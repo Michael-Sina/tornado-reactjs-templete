@@ -1,4 +1,4 @@
-# trial-tornado-reactjs
+# tornado-reactjs-templete
 Docker(Win10)+CentOS7+Tornado+Boilerplate+Reactjs+superviosr+JWT+MySQL
 
 ## 環境説明
