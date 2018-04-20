@@ -32,7 +32,7 @@ services:
         privileged: true    
     tornado-server:
         build:
-            context: .
+            context: ./dockerfile/tornado/
             dockerfile: Dockerfile
         container_name: tornado
         image: tornado-server
@@ -48,13 +48,14 @@ services:
         privileged: true
         restart: always
     react-client:
-        image: node:9.8
+        build:
+            context: ./dockerfile/reactjs/
+            dockerfile: Dockerfile
         container_name: react
         working_dir: /home
         environment:
             - NODE_ENV=development
         volumes:
-            - ../react-client:/home:z
+            - ../react-client:/home
         ports:
             - "5000:8000"
-        command: npm run dev
