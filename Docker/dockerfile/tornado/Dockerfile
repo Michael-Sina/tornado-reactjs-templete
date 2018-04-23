@@ -4,7 +4,7 @@ LABEL maintainer="mike-sino@mike-sino.eu.org"
 
 # Update system and install basic pkts.
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get -y install build-essential
+RUN apt-get -y install build-essential sudo
 RUN apt-get -y install git
 RUN apt-get install -y \
     curl 
