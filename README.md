@@ -10,7 +10,7 @@ ubuntu:16.04
 DockerにLinux環境を構築
 
 ### フロントエンド
-1. 開発言語: Javascript
+1. 開発言語: Javascript
 2. JSフレームワーク: React.js
 3. UIコンポーネント: Ant-Design
 
