@@ -1,18 +1,18 @@
-# tornado-reactjs-templete
-Docker(Win10)+CentOS7+Tornado+Boilerplate+Reactjs+superviosr+JWT+MySQL
+# Tornado-Reactjs-Scaffold
+Docker + ubuntu:16.04 + Tornado + Reactjs(Ant-Design) + MySQL
 
 ## 環境説明
 
-### PC OS
-Windows10 Pro
+### Develop OS
+ubuntu:16.04
 
 ### 開発環境
-DockerにLinux環境を構築（CentOS7）
+DockerにLinux環境を構築
 
 ### フロントエンド
-1. HTMLテンプレート: Boilerplate (HTML5)
+1. 開発言語: Javascript
 2. JSフレームワーク: React.js
-3. UIコンポーネント: Materila-UI
+3. UIコンポーネント: Ant-Design
 
 ### バックエンド
 1. 開発言語: Python3
@@ -30,7 +30,7 @@ Github
 
 1. ランDockerイメージ
    ```
-   docker run -it --privileged=true --security-opt seccomp=unconfined --cap-add=SYS_ADMIN -e "container=docker" -d -p 2202:22 -p 33060:3306 -p 8443:443 -p 8080:80 -p 8000-8020:8000-8020 -v C:/fosterlink/shrpa:/home/fosterlink/shrpa --restart=always --name trialdev trial
+    docker-compose up -d
    
    ```
 
@@ -38,9 +38,8 @@ Github
 2. ランニングコンテナを入る
 　 
    ```
-   docker exec -it trialdev bin/bash
+   docker exec -it tornado bash
    ```
-
 
 
 ### 参考文献
