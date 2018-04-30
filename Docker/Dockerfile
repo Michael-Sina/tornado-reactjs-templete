@@ -1,6 +1,7 @@
 # from offical base image.
 FROM centos:centos7
-MAINTAINER Michael <yang@fosterlink.co.jp>
+LABEL maintainer="mike-sino"
+LABEL version="1.0"
 
 # Update system and install basic pkts.
 RUN yum install -y --nogpgcheck deltarpm  && \
