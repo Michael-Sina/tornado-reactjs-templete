@@ -20,7 +20,7 @@ RUN conda update -y conda  && \
     conda clean --all
 
 # Install python moduels
-COPY ./init/requirements.txt /tmp/requirements.txt
+COPY ./dockerfile/tornado/init/requirements.txt /tmp/requirements.txt
 RUN pip install -q -U -r /tmp/requirements.txt
 
 # Install jupyter lab and extensions
