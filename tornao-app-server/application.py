@@ -1,6 +1,3 @@
-#!/usr/bin/env Python
-# coding=utf-8
-
 from url import url
 
 import tornado.web
