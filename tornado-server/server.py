@@ -1,23 +1,17 @@
-#!/usr/bin/env Python
-# coding=utf-8
 
 import tornado.ioloop
-import tornado.options
-import tornado.httpserver
-from application import application
-from tornado.options import define, options
+import tornado.web
 
-define("port", default = 8080, help = "run on the given port", type = int)
+class MainHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write("Hello, world")
 
-def main():
-    tornado.options.parse_command_line()
-    http_server = tornado.httpserver.HTTPServer(application)
-    http_server.listen(options.port)
-
-    print("Development server is running at http://localhost:%s" % options.port)
-    print("Quit the server with Control-C")
-
-    tornado.ioloop.IOLoop.instance().start()
+def make_app():
+    return tornado.web.Application([
+        (r"/", MainHandler),
+    ])
 
 if __name__ == "__main__":
-    main()
+    app = make_app()
+    app.listen(8000)
+    tornado.ioloop.IOLoop.current().start()
