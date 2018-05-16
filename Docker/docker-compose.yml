@@ -1,0 +1,65 @@
+version: '3'
+
+volumes:
+    db-data:
+    
+services:
+    db-mysql:
+        image: mysql
+        container_name: db-mysql
+        volumes:
+            - db-data:/var/lib/mysql
+            - ./init/my.cnf:/etc/my.cnf
+        environment:
+            MYSQL_ROOT_PASSWORD: rootpasswd
+            MYSQL_USER: tornado
+            MYSQL_PASSWORD: tornadopasswd
+            MYSQL_DATABASE: qiwsirtest
+        restart: always
+
+    db-admin:
+        image: phpmyadmin/phpmyadmin
+        container_name: db-admin
+        environment:
+            PMA_ARBITRARY: 1
+            PMA_HOST: db-mysql:3306
+            PMA_USER: tornado
+            PMA_PASSWORD: tornadopasswd
+        links:
+            - db-mysql
+        ports:
+            - "8081:80"
+        restart: always
+        privileged: true
+    
+    tornado-server:
+        build:
+            context: ./dockerfile/tornado/
+            dockerfile: Dockerfile
+        container_name: tornado
+        image: tornado-server
+        ports:
+            - "8080:8080"
+        links:
+            - db-mysql
+        volumes:
+            - ../tornado-server:/app/tornado-server
+            - ../notebook:/notebook
+            - ./init/jupyter_notebook_config.py:/root/.jupyter/jupyter_notebook_config.py
+            - ./init/requirements.txt:/tmp/requirements.txt
+        command: jupyter lab
+        privileged: true
+        restart: always
+
+    # react-client:
+    #     build:
+    #         context: ./dockerfile/reactjs/
+    #         dockerfile: Dockerfile
+    #     container_name: react
+    #     working_dir: /home
+    #     environment:
+    #         - NODE_ENV=development
+    #     volumes:
+    #         - ../react-client:/home
+    #     ports:
+    #         - "5000:8000"

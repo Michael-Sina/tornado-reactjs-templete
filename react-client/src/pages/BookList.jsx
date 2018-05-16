@@ -105,7 +105,7 @@ class BookListPage extends React.Component {
         </InputGroup>       
         <br />
         <span className={style.addbook}>
-          <Button className={style.addbtn} type="primary" size="large" onClick={}>書籍追加</Button>
+          {/* <Button className={style.addbtn} type="primary" size="large" onClick={}>書籍追加</Button> */}
         </span>
         <br />
         <Table columns={columns} dataSource={bookList} bordered rowKey={row => row.id} />

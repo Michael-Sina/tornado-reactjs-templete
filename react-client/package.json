@@ -1,0 +1,25 @@
+{
+  "name": "react-client",
+  "version": "1.0.0",
+  "description": "react-client for tornado-reactjs-scaffold",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "npm i roadhog -g && npm i react react-dom react-router -S && roadhog server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "antd": "^2.7.0",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "react-redux": "^5.0.3",
+    "react-router": "^3.2.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-plugin-import": "^1.1.0",
+    "json-server": "^0.9.4"
+  }
+}
