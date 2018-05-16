@@ -1,0 +1,7 @@
+{
+    "user"     : "tornado",
+    "port"     : "3306",
+    "host"     : "db-mysql",
+    "charset"  : "utf8",
+    "password" : "tornadopasswd"
+}

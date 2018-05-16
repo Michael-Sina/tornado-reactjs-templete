@@ -9,12 +9,12 @@ services:
         container_name: db-mysql
         volumes:
             - db-data:/var/lib/mysql
-            - ./init/my.cnf:/etc/my.cnf
+            - ./init/mysql/my.cnf:/etc/my.cnf
         environment:
             MYSQL_ROOT_PASSWORD: rootpasswd
             MYSQL_USER: tornado
             MYSQL_PASSWORD: tornadopasswd
-            MYSQL_DATABASE: qiwsirtest
+            MYSQL_DATABASE: test
         restart: always
 
     db-admin:
@@ -40,6 +40,7 @@ services:
         image: tornado-server
         ports:
             - "8080:8080"
+            - "8000:8000"
         links:
             - db-mysql
         volumes:
@@ -47,6 +48,9 @@ services:
             - ../notebook:/notebook
             - ./init/jupyter_notebook_config.py:/root/.jupyter/jupyter_notebook_config.py
             - ./init/requirements.txt:/tmp/requirements.txt
+            - ./init/mysql/mysql_config.json:/root/.local/config/mysql_config.json
+            - ./init/mysql-jupyter-kernel:/usr/local/share/jupyter/kernels/jupyter-mysql-kernel
+        working_dir: /app/tornado-server
         command: jupyter lab
         privileged: true
         restart: always

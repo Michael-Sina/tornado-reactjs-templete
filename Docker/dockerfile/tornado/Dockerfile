@@ -4,10 +4,7 @@ LABEL maintainer="mike-sino@mike-sino.eu.org"
 
 # Update system and install basic pkts.
 RUN apt-get update && apt-get -y upgrade  && \
-    apt-get -y install build-essential sudo git curl  && \
-    mkdir /app/
-WORKDIR app
-RUN mkdir /tornado-server/
+    apt-get -y install build-essential sudo git curl
 
 # Install miniconda3
 RUN curl -LO -k https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
@@ -36,7 +33,10 @@ RUN conda create -n python2 python=2.7 ipykernel && \
     python -m ipykernel install --user --name=python2 --display-name=python2 && \
     . deactivate
 
+# Install mysql kernel for jupyter
+RUN pip install git+https://github.com/shemic/jupyter-mysql-kernel
+
 # Set Docker env
-EXPOSE 8080
+EXPOSE 8080 8000
 
 CMD ["/sbin/init"]
