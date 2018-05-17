@@ -46,10 +46,10 @@ services:
         volumes:
             - ../tornado-server:/app/tornado-server
             - ../notebook:/notebook
-            - ./init/jupyter_notebook_config.py:/root/.jupyter/jupyter_notebook_config.py
-            - ./init/requirements.txt:/tmp/requirements.txt
-            - ./init/mysql/mysql_config.json:/root/.local/config/mysql_config.json
-            - ./init/mysql-jupyter-kernel:/usr/local/share/jupyter/kernels/jupyter-mysql-kernel
+            - ./dockerfile/tornado/init/jupyter_notebook_config.py:/root/.jupyter/jupyter_notebook_config.py
+            - ./dockerfile/tornado/init/requirements.txt:/tmp/requirements.txt
+            - ./dockerfile/tornado/init/mysql/mysql_config.json:/root/.local/config/mysql_config.json
+            - ./dockerfile/tornado/init/mysql-jupyter-kernel:/root/.local/share/jupyter/kernels/jupyter-mysql-kernel
         working_dir: /app/tornado-server
         command: jupyter lab
         privileged: true
