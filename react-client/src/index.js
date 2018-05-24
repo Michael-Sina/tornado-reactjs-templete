@@ -1,34 +1,24 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import { Router, Route, hashHistory } from 'react-router';
-// import AdminPage from './pages/Admin';
-// import UserAddPage from './pages/UserAdd';
-// import UserListPage from './pages/UserList';
-// import UserEditPage from './pages/UserEdit';
-// import BookAddPage from './pages/BookAdd';
-// import BookListPage from './pages/BookList';
-// import BookEditPage from './pages/BookEdit';
-// import LoginPage from './pages/Login';
-// import HomeLayout from './layouts/HomeLayout';
+import dva from 'dva';
+import './index.css';
 
-// ReactDOM.render((
-//     <Router history={hashHistory}>
-//         <Route path="/login" component={LoginPage}/>
-//         <Route path="/book/list" component={BookListPage}>
-//             <Route path="/book/add" component={BookAddPage}/>
-//             <Route path="/book/edit/:id" component={BookEditPage}/>
-//         </Route>
-//         <Route path="/admin" component={AdminPage}/>
-//         <Route path="/user/list" component={UserListPage}>
-//             <Route path="/user/add" component={UserAddPage}/>
-//             <Route path="/user/edit/:id" component={UserEditPage}/>
-//         </Route>             
-//     </Router>
-// ), document.getElementById('app'));
+// 1. Initialize
+const app = dva({
+    initialState: {
+        products: [
+            { name: 'dva', id: 1 },
+            { name: 'antd', id: 2 },
+        ],
+    },
+});
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+// 2. Plugins
+// app.use({});
 
-ReactDOM.render((
-  <div>Hello React123!</div>
-), document.getElementById('app'));
+// 3. Model
+app.model(require('./models/products').default);
+
+// 4. Router
+app.router(require('./router').default);
+
+// 5. Start
+app.start('#root');

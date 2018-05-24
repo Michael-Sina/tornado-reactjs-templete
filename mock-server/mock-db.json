@@ -1,0 +1,18 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "峰不二子",
+      "mail_address": "test1@testcompany.com",
+      "password": "password_test1",
+      "is_admin": 1
+    },
+    {
+      "id": 2,
+      "name": "Jone",
+      "mail_address": "test2@testcompany.com",
+      "password": "password_test2",
+      "is_admin": 0
+    }
+  ]
+}
