@@ -1,35 +1,27 @@
-.main {
-    height: 100vh;
-    padding-top: 50px;
-  }
-  
-.header {
-    position: absolute;
-    top: 0;
-    height: 50px;
-    width: 100%;
+.trigger {
     font-size: 18px;
-    padding: 0 20px;
-    line-height: 50px;
-    background-color: #108ee9;
-    color: #fff;
-
-    a {
-        color: inherit;
-    }
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color .3s;
+}
+  
+.trigger:hover {
+    color: #1890ff;
+}
+  
+.logo {
+    height: 32px;
+    background: rgba(255,255,255,.2);
+    margin: 16px;
 }
 
-.menu {
-    height: 100%;
-    width: 240px;
-    float: left;
-    background-color: #404040;
-}
-
-.content {
-    height: 100%;
-    padding: 12px;
-    overflow: auto;
-    margin-left: 240px;
-    align-self: stretch;
+.content { 
+    margin: 24px 16px;
+    padding: 24px;
+    background: #fff;
+    background-image: url('../assets/yay.jpg');
+    background-repeat: no-repeat;
+    background-position: center 110px;
+    background-size: 50%;
 }
