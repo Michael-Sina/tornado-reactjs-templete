@@ -36,6 +36,7 @@ class Home extends React.Component {
                 <Link to="/user/add">アカウント追加</Link>
               </Menu.Item>
             </SubMenu>
+
             <SubMenu
               key="book"
               title={<span><Icon type="book" /><span>書籍管理</span></span>}
@@ -49,6 +50,7 @@ class Home extends React.Component {
             </SubMenu>
           </Menu>
         </Sider>
+
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }}>
             <Icon
@@ -59,6 +61,7 @@ class Home extends React.Component {
           </Header>
           <Content className={style.content} />
         </Layout>
+
       </Layout>
     );
   }
