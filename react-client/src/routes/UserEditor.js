@@ -75,13 +75,6 @@ class UserEditor extends React.Component {
         },
       },
     };
-    const roles = [{
-      value: 'ユーザー', 
-      label: 'ユーザー'
-    },{
-      value: '管理者',
-      label: '管理者'
-    }]
     const EmailOptions = autoCompleteResult.map((email) => {
       return <AutoCompleteOption key={email}>{email}</AutoCompleteOption>;
     });
@@ -154,14 +147,15 @@ class UserEditor extends React.Component {
         >
           {getFieldDecorator('role', {
             rules: [{
-              type: 'array', required: true, message: 'ロールを選択してください!',
+              required: true, message: 'ロールを選択してください!',
             }],
           })(
-            <Select 
-              options={roles}
+            <Select
               placeholder="ロールを選択する"
-              onChange={this.handleProvinceChange}/>
-              <SelectOption> <SelectOption>
+              onChange={this.handleProvinceChange}>
+              <SelectOption value="ユーザー">ユーザー</SelectOption>
+              <SelectOption value="管理者">管理者</SelectOption>
+            </Select>
           )}
         </FormItem>
         <FormItem {...tailFormItemLayout}>
