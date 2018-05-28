@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'dva/router';
 import { Layout, Menu, Icon } from 'antd';
-import style from './Home.less';
+import style from './HomeLayout.less';
+import { connect } from 'dva';
 
 const { Header, Sider, Content } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -14,8 +15,8 @@ class Home extends React.Component {
     this.setState({
       collapsed: !this.state.collapsed,
     });
-  }
-  render () {
+  };
+  render (props) {
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Sider
@@ -25,6 +26,14 @@ class Home extends React.Component {
         >
           <div className={style.logo} />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+            <SubMenu
+              key="home"
+              title={<span><Icon type="home" /><span>ホーム</span></span>}
+            >
+              <Menu.Item key="home">
+                <Link to="/">ホーム</Link>
+              </Menu.Item>
+            </SubMenu>
             <SubMenu
               key="user"
               title={<span><Icon type="user" /><span>アカウント管理</span></span>}
@@ -45,7 +54,7 @@ class Home extends React.Component {
                 <Link to="/book/list">書籍管理</Link>
               </Menu.Item>
               <Menu.Item key="book-add">
-                <Link to="/book/list">書籍追加</Link>
+                <Link to="/book/add">書籍追加</Link>
               </Menu.Item>
             </SubMenu>
           </Menu>
@@ -59,12 +68,14 @@ class Home extends React.Component {
               onClick={this.toggle}
             />
           </Header>
-          <Content className={style.content} />
+          {/* <Content className={style.content}>  */}
+          <Content>
+           {this.props.children}
+          </Content>
         </Layout>
-
       </Layout>
     );
   }
 }
 
-export default Home;
+export default connect()(Home);
