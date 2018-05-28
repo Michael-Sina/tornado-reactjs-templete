@@ -1,13 +1,13 @@
 import React from 'react';
-import { Form, Input, Button, AutoComplete } from 'antd';
+import { Form, Input, Button, Select } from 'antd';
 
 const FormItem = Form.Item;
-const AutoCompleteOption = AutoComplete.Option;
+const SelectOption = Select.Option;
+const { TextArea } = Input;
 
 class BookEditor extends React.Component {
   state = {
     confirmDirty: false,
-    autoCompleteResult: [],
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -17,38 +17,8 @@ class BookEditor extends React.Component {
       }
     });
   }
-  handleConfirmBlur = (e) => {
-    const value = e.target.value;
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-  }
-  compareToFirstPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('パスワード同じではない!');
-    } else {
-      callback();
-    }
-  }
-  validateToNextPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && this.state.confirmDirty) {
-      form.validateFields(['confirm'], { force: true });
-    }
-    callback();
-  }
-  handleEmailSearch = (value) => {
-    let autoCompleteResult;
-    if (!value || value.indexOf('@') >= 0) {
-      autoCompleteResult = [];
-    } else {
-      autoCompleteResult = ['gmail.com', '163.com', 'qq.com'].map(domain => `${value}@${domain}`);
-    }
-    this.setState({ autoCompleteResult });
-  }
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult } = this.state;
-
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -71,70 +41,72 @@ class BookEditor extends React.Component {
         },
       },
     };
-    const EmailOptions = autoCompleteResult.map((email) => {
-      return <AutoCompleteOption key={email}>{email}</AutoCompleteOption>;
-    });
 
     return (
       <Form onSubmit={this.handleSubmit}  style={{width: '100%', padding: '80px'}}>
         <FormItem
           {...formItemLayout}
           label={(
-            <span>氏名</span>
+            <span>タイトル</span>
           )}
         >
-          {getFieldDecorator('name', {
-            rules: [{ required: true, message: '氏名を入力してください!', whitespace: true }],
+          {getFieldDecorator('title', {
+            rules: [{ required: true, message: 'タイトルを入力してください!', whitespace: true }],
           })(
             <Input />
           )}
         </FormItem>
         <FormItem
           {...formItemLayout}
-          label="メールアドレス"
+          label={(
+            <span>出版社</span>
+          )}
         >
-          {getFieldDecorator('email', {
-            rules: [{
-              type: 'email', message: 'The input is not valid E-mail!',
-            }, {
-              required: true, message: 'メールアドレスを入力してください!',
-            }],
+          {getFieldDecorator('publisher', {
+            rules: [{ required: true, message: '出版社を入力してください!', whitespace: true }],
           })(
-            <AutoComplete
-            dataSource={EmailOptions}
-            onChange={this.handleEmailSearch}
-            placeholder="メールアドレス"
-            >
-              <Input />
-            </AutoComplete>   
+            <Input />
           )}
         </FormItem>
         <FormItem
           {...formItemLayout}
-          label="パスワード"
+          label={(
+            <span>作者</span>
+          )}
         >
-          {getFieldDecorator('password', {
-            rules: [{
-              required: true, message: 'パスワードを入力してください!',
-            }, {
-              validator: this.validateToNextPassword,
-            }],
+          {getFieldDecorator('author', {
+            rules: [{ required: true, message: '作者を入力してください!', whitespace: true }],
           })(
-              <Input type="password" />
+            <Input />
           )}
         </FormItem>
         <FormItem
           {...formItemLayout}
-          label="パスワード確認"
+          label="フォーマット"
         >
-          {getFieldDecorator('confirm', {
+          {getFieldDecorator('format', {
             rules: [{
-              required: true, message: 'パスワードを確認してください!',
-            }, {
-              validator: this.compareToFirstPassword,
+              required: true, message: 'フォーマットを選択してください!',
             }],
           })(
-            <Input type="password" onBlur={this.handleConfirmBlur} />
+            <Select
+              placeholder="フォーマットを選択する"
+              onChange={this.handleProvinceChange}>
+              <SelectOption value="紙">紙</SelectOption>
+              <SelectOption value="電子書籍">電子書籍</SelectOption>
+            </Select>
+          )}
+        </FormItem>
+        <FormItem
+          {...formItemLayout}
+          label={(
+            <span>感想</span>
+          )}
+        >
+          {getFieldDecorator('thought', {
+            rules: [{ required: true, message: '感想を入力してください!', whitespace: true }],
+          })(
+            <TextArea rows={15} />
           )}
         </FormItem>
         <FormItem {...tailFormItemLayout}>
