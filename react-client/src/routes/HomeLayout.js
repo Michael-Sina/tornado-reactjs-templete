@@ -3,6 +3,13 @@ import { Link } from 'dva/router';
 import { Layout, Menu, Icon } from 'antd';
 import style from './HomeLayout.less';
 import { connect } from 'dva';
+import { Route, Switch } from 'dva/router';
+
+import Welcome from './Welcome';
+import UserList from './UserList';
+import UserEditor from './UserEditor';
+import BookList from './BookList';
+import BookEditor from './BookEditor';
 
 const { Header, Sider, Content } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -16,7 +23,7 @@ class Home extends React.Component {
       collapsed: !this.state.collapsed,
     });
   };
-  render (props) {
+  render () {
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Sider
@@ -31,7 +38,7 @@ class Home extends React.Component {
               title={<span><Icon type="home" /><span>ホーム</span></span>}
             >
               <Menu.Item key="home">
-                <Link to="/">ホーム</Link>
+                <Link to="/home">ホーム</Link>
               </Menu.Item>
             </SubMenu>
             <SubMenu
@@ -68,9 +75,14 @@ class Home extends React.Component {
               onClick={this.toggle}
             />
           </Header>
-          {/* <Content className={style.content}>  */}
-          <Content>
-           {this.props.children}
+          <Content className={style.content}> 
+            <Switch>
+              <Route path="/home" exact component={Welcome} />
+              <Route path="/user/list" component={UserList} />
+              <Route path="/user/add" component={UserEditor} />
+              <Route path="/book/list" component={BookList} />
+              <Route path="/book/add" component={BookEditor} />
+            </Switch>
           </Content>
         </Layout>
       </Layout>

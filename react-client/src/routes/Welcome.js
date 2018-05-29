@@ -1,6 +1,5 @@
 import React from 'react';
 import style from './Welcome.less';
-import { connect } from 'dva';
 
 class Welcome extends React.Component {
   render () {
@@ -10,5 +9,4 @@ class Welcome extends React.Component {
   }
 }
 
-
-export default connect()(Welcome);
+export default Welcome;
