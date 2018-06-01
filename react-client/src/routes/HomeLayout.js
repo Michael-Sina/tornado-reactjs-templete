@@ -58,7 +58,7 @@ class Home extends React.Component {
               title={<span><Icon type="book" /><span>書籍管理</span></span>}
             >
               <Menu.Item key="book-list">
-                <Link to="/book/list">書籍管理</Link>
+                <Link to="/book/list">書籍一覧</Link>
               </Menu.Item>
               <Menu.Item key="book-add">
                 <Link to="/book/add">書籍追加</Link>

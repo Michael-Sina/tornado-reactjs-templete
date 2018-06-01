@@ -1,5 +1,5 @@
 export default {
-    namespace: 'products',
+    namespace: 'userlist',
 
     state: [],
     

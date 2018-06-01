@@ -4,9 +4,19 @@ import './index.css';
 // 1. Initialize
 const app = dva({
     initialState: {
-        products: [
-            { name: 'dva', id: 1 },
-            { name: 'antd', id: 2 },
+        userlist : [
+            { 
+                id: 1,
+                name: 'dva',
+                email: 'test1@testcomp.com',
+                is_admin: true
+            },
+            { 
+                id: 2,
+                name: 'test2', 
+                email: 'test2@testcomp.com',
+                is_admin: false
+            }
         ],
     },
 });
@@ -15,7 +25,7 @@ const app = dva({
 // app.use({});
 
 // 3. Model
-app.model(require('./models/products').default);
+app.model(require('./models/userlist').default);
 
 // 4. Router
 app.router(require('./router').default);
