@@ -1,5 +1,5 @@
 export default {
-    namespace: 'userlist',
+    namespace: 'booklist',
 
     state: [],
     

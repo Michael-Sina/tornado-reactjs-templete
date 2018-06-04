@@ -46,6 +46,7 @@ const UserListTable = ({ onDelete, users }) => {
           );
         }
     }];
+    
     return (
         <div style= {{padding: '80px'}}>
           <div style={{padding: '20px', width: '80%'}}>

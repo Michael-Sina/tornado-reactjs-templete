@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import UserListTable from '../components/UserListTable';
+import UserListTable from '../components/Users/UserListTable';
 
 
 const UserList = ({ dispatch, userlist }) => {
