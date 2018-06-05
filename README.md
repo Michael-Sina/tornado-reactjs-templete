@@ -1,16 +1,25 @@
 # Tornado-Reactjs-Scaffold
+
 Docker + ubuntu:16.04 + Tornado + Reactjs(Ant-Design) + MySQL
 
 ## Develop Environment
 
 ### Develop OS
-ubuntu:16.04
+
+docker base image ubuntu:16.04
+
+### Mock Server
+
+[Json Server](http://jsonplaceholder.typicode.com/) usage: `json-server mock-db.json -w -p 8081`
 
 ### Frontend
+
 1. language: js
 2. framework: Reactjs(Ant-Design)
 
+
 ### Backend
+
 1. language: Python3
 2. framework: Tornado
 3. process manager: supervisor
@@ -18,6 +27,7 @@ ubuntu:16.04
 5. database: MySQL Community Server 5.7.18
 
 ### Version
+
 Github
 
 ## Usage
@@ -25,17 +35,18 @@ Github
 ### start docker
 
 1. run docker images
-   ```
-   docker-compose up -d
-   ```
+   
+```
+docker-compose up -d
+```
 
-2. access to backend docker bash 
+2. access to backend docker bash
 　 
    ```
    docker exec -it tornado bash
    ```
 
-3. access to frontend docker bash 
+3. access to frontend docker bash
 
    ```
    docker exec -it react sh
