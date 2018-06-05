@@ -10,7 +10,7 @@ docker base image ubuntu:16.04
 
 ### Mock Server
 
-[Json Server](http://jsonplaceholder.typicode.com/) usage: `json-server mock-db.json -w -p 8081`
+[Json Server](http://jsonplaceholder.typicode.com/): [localhost:5000](localhost:5000)
 
 ### Frontend
 
@@ -42,12 +42,12 @@ docker-compose up -d
 
 2. access to backend docker bash
 　 
-   ```
-   docker exec -it tornado bash
-   ```
+```
+docker exec -it tornado bash
+```
 
 3. access to frontend docker bash
 
-   ```
-   docker exec -it react sh
-   ```
+```
+docker exec -it react sh
+```
