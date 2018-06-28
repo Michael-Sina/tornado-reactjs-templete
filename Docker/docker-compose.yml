@@ -66,3 +66,15 @@ services:
         command: json-server mock-db.json -w -p 8000
         ports:
             - "5000:8000"
+
+    reactjs-client:
+        build:
+            context: ./dockerfile/reactjs/
+            dockerfile: Dockerfile
+        container_name: reactjs-client
+        working_dir: /home/app
+        volumes:
+            - ../react-client:/home/app
+        command: sh -c "npm install && npm run start"
+        ports:
+            - "3000:8000"
