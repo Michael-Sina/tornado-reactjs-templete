@@ -60,12 +60,12 @@ services:
             context: ./dockerfile/mock-server/
             dockerfile: Dockerfile
         container_name: mock-server
-        working_dir: /home/app/mock-server
         volumes:
             - ../mock-server:/home/app/mock-server
-        command: json-server mock-db.json -w -p 8000
+        working_dir: /home/app/mock-server
+        command: json-server db.json -w -p 5000 -H 0.0.0.0
         ports:
-            - "5000:8000"
+            - "5000:5000"
 
     reactjs-client:
         build:
